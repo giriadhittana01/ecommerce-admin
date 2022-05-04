@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { BaseURL_DEV } from './BaseURL';
+import { BaseURL_DEV, BaseURL_PROD } from './BaseURL';
 
 const http = axios.create({
-    baseURL : `${BaseURL_DEV}/api/v1/order`,
+    baseURL : `${BaseURL_PROD}/api/v1/order`,
     headers : {
         "Content-type" : "application/json",
     }
@@ -11,16 +11,16 @@ const http = axios.create({
 const TOKEN = localStorage.getItem("persist:root")?JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser?.Token:"";
 
 const http_auth = axios.create({
-    baseURL : `${BaseURL_DEV}/api/v1/order`,
+    baseURL : `${BaseURL_PROD}/api/v1/order`,
     headers : {
         "Content-type" : "application/json",
-        "authorization" : `Bearer ${TOKEN}`
+        "authorization" : `Bearer ${TOKEN}`,
     }
 });
 
 export default new class UserServices{
     getBaseURL(){
-        return `${BaseURL_DEV}/api/v1/order`;
+        return `${BaseURL_PROD}/api/v1/order`;
     }
     getAllOrder(){
         return http_auth.get('/');

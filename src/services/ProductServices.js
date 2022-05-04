@@ -1,26 +1,27 @@
 import axios from 'axios'
-import { BaseURL_DEV } from './BaseURL';
+import { BaseURL_DEV, BaseURL_PROD } from './BaseURL';
 
 const http = axios.create({
-    baseURL : `${URL}/api/v1/product`,
+    baseURL : `${BaseURL_PROD}/api/v1/product`,
     headers : {
         "Content-type" : "application/json",
+        'Access-Control-Allow-Origin': `${BaseURL_PROD}`,
     }
 });
 
 const TOKEN = localStorage.getItem("persist:root")?JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser?.Token:"";
 
 const http_auth = axios.create({
-    baseURL : `${BaseURL_DEV}/api/v1/product`,
+    baseURL : `${BaseURL_PROD}/api/v1/product`,
     headers : {
         "Content-type" : "application/json",
-        "authorization" : `Bearer ${TOKEN}`
+        "authorization" : `Bearer ${TOKEN}`,
     }
 });
 
 export default new class ProductServices{
     getBaseURL(){
-        return `${BaseURL_DEV}/api/v1/product`;
+        return `${BaseURL_PROD}/api/v1/product`;
     }
     getAllProduct(category){
         if(category){

@@ -1,5 +1,5 @@
 const BaseURL_DEV = 'http://localhost:8000';
-const BaseURL_PROD = 'https://dashboard.heroku.com/apps/e-commerce-online-app';
+const BaseURL_PROD = 'https://e-commerce-online-app.herokuapp.com';
 export {
     BaseURL_DEV,
     BaseURL_PROD
