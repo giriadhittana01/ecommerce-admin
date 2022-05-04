@@ -14,8 +14,16 @@ import {
   Report,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 
 export default function Sidebar() {
+  const [ac,setAc] = useState('/');
+  const location = useLocation();
+  useEffect(() => {
+    setAc(location.pathname)
+  },[location])
+  
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -23,47 +31,47 @@ export default function Sidebar() {
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
-            <li className="sidebarListItem active">
+            <li className={'sidebarListItem'+(ac=='/'?" active":"")}>
               <LineStyle className="sidebarIcon" />
               Home
             </li>
             </Link>
-            <li className="sidebarListItem">
+            {/* <li className="sidebarListItem">
               <Timeline className="sidebarIcon" />
               Analytics
             </li>
             <li className="sidebarListItem">
               <TrendingUp className="sidebarIcon" />
               Sales
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
             <Link to="/users" className="link">
-              <li className="sidebarListItem">
+              <li className={'sidebarListItem'+(ac=='/users'?" active":"")}>
                 <PermIdentity className="sidebarIcon" />
                 Users
               </li>
             </Link>
             <Link to="/products" className="link">
-              <li className="sidebarListItem">
+              <li className={'sidebarListItem'+(ac=='/products'?" active":"")}>
                 <Storefront className="sidebarIcon" />
                 Products
               </li>
             </Link>
-            <li className="sidebarListItem">
+            {/* <li className="sidebarListItem">
               <AttachMoney className="sidebarIcon" />
               Transactions
             </li>
             <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />
               Reports
-            </li>
+            </li> */}
           </ul>
         </div>
-        <div className="sidebarMenu">
+        {/* <div className="sidebarMenu">
           <h3 className="sidebarTitle">Notifications</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
@@ -79,8 +87,8 @@ export default function Sidebar() {
               Messages
             </li>
           </ul>
-        </div>
-        <div className="sidebarMenu">
+        </div> */}
+        {/* <div className="sidebarMenu">
           <h3 className="sidebarTitle">Staff</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
@@ -96,7 +104,7 @@ export default function Sidebar() {
               Reports
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );
